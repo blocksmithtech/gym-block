@@ -3,7 +3,7 @@ pragma solidity 0.4.24;
 import './zeppelin/lifecycle/Destructible.sol';
 import './zeppelin/ownership/Ownable.sol';
 
-contract Class is Destructible, Ownable {
+contract Class is Ownable, Destructible {
     address public charityAddress;
     string public name;
     uint256 public deposit;
@@ -76,7 +76,7 @@ contract Class is Destructible, Ownable {
         uint256 _deposit,
         uint _limitOfParticipants
     ) public {
-        if (bytes(_charityAddress).length != 0) {
+        if (_charityAddress == address(0)) {
             charityAddress = _charityAddress;
         } else {
             charityAddress = msg.sender;
@@ -191,7 +191,7 @@ contract Class is Destructible, Ownable {
         payoutAmount = payout();
         ended = true;
         endedAt = now;
-        charityAddress.transfer(payoutAmount)
+        charityAddress.transfer(payoutAmount);
         uint leftOver = totalBalance();
         owner.transfer(leftOver);
 
