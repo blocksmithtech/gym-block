@@ -1,5 +1,7 @@
 import './style.css';
 
+import './classes.js';
+
 function errorMessageComponent(message) {
   let element = document.createElement('div');
   element.innerHTML = message;
