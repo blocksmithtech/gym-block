@@ -14,7 +14,6 @@ contract Class is Destructible, Ownable {
     bool public cancelled;
     bool public assetsDistributed;
     uint public endedAt;
-    uint public coolingPeriod;
     uint256 public payoutAmount;
 
     mapping (address => Participant) public participants;
@@ -69,15 +68,13 @@ contract Class is Destructible, Ownable {
      * @param _name The name of the event
      * @param _deposit The amount each participant deposits. The default is set to 0.02 Ether. The amount cannot be changed once deployed.
      * @param _limitOfParticipants The number of participant. The default is set to 20. The number can be changed by the owner of the event.
-     * @param _coolingPeriod The period participants should withdraw their deposit after the event ends. After the cooling period, the event owner can claim the remining deposits.
      * @param _charityAddress The charity address to where we will send the proceedings
      */
     constructor (
         address _charityAddress,
         string _name,
         uint256 _deposit,
-        uint _limitOfParticipants,
-        uint _coolingPeriod,
+        uint _limitOfParticipants
     ) public {
         if (bytes(_charityAddress).length != 0) {
             charityAddress = _charityAddress;
@@ -100,12 +97,6 @@ contract Class is Destructible, Ownable {
             limitOfParticipants = _limitOfParticipants;
         }else{
             limitOfParticipants = 20;
-        }
-
-        if (_coolingPeriod != 0) {
-            coolingPeriod = _coolingPeriod;
-        } else {
-            coolingPeriod = 1 weeks;
         }
     }
 
