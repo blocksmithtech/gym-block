@@ -26,7 +26,7 @@ contract Class is Ownable, Destructible {
         bool paid;
     }
 
-    event RegisterEvent(address addr, string participantName, address charityAddress);
+    event RegisterEvent(address addr, string participantName);
     event AttendEvent(address addr);
     event PaybackEvent(uint256 _payout, address charityAddress);
     event WithdrawEvent(address addr, uint256 _payout);
@@ -106,7 +106,7 @@ contract Class is Ownable, Destructible {
      */
     function register(string _participant) external payable onlyActive{
         registerInternal(_participant);
-        emit RegisterEvent(msg.sender, _participant, charityAddress);
+        emit RegisterEvent(msg.sender, _participant);
     }
 
     /**
