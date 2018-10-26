@@ -1,3 +1,6 @@
-.hello {
+.error-msg {
   color: red;
+}
+.notice-msg {
+  color: green;
 }
