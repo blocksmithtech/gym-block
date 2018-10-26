@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "webpack": "^4.23.1",
-    "webpack-cli": "^3.1.2"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2"
   }
 }
