@@ -24,7 +24,9 @@ function initWeb3Legacy() {
 
 function web3Ready() {
   alertMessage(
-    'notice', `Connected to network ${web3.version.network}`
+    'notice',
+    `Connected to network ${web3.version.network}.` +
+    `Using API version ${web3.version.api}`
   );
   alertMessage(
     'notice',

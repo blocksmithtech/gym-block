@@ -1,4 +1,4 @@
-import deployContract from './contract_deploy.js'
+import deployContract from './contract_deploy.js';
 
 window.addEventListener('load', () => {
   const formElem = document.getElementById('new_class_form');
