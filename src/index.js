@@ -1,20 +1,9 @@
 import './style.css';
 
+import {alertMessage} from './alerts.js';
+
 import './classes.js';
-
-function errorMessageComponent(message) {
-  let element = document.createElement('div');
-  element.innerHTML = message;
-  element.classList.add('error-msg');
-  return element;
-}
-
-function noticeMessageComponent(message) {
-  let element = document.createElement('div');
-  element.innerHTML = message;
-  element.classList.add('notice-msg');
-  return element;
-}
+import './attend.js';
 
 function initWeb3Ethereum() {
   window.web3 = new Web3(ethereum);
@@ -24,7 +13,7 @@ function initWeb3Ethereum() {
   } catch (error) {
     // User denied account access...
     console.log(error);
-    document.body.appendChild(errorMessageComponent(error));
+    alertMessage('error', error);
   }
 }
 
@@ -34,13 +23,14 @@ function initWeb3Legacy() {
 }
 
 function web3Ready() {
-  document.body.appendChild(
-    noticeMessageComponent(`Connected to network ${web3.version.network}`)
+  alertMessage(
+    'notice',
+    `Connected to network ${web3.version.network}.` +
+    `Using API version ${web3.version.api}`
   );
-  document.body.appendChild(
-    noticeMessageComponent(
-      `Detected accounts: ${web3.eth.accounts.join(', ')}`
-    )
+  alertMessage(
+    'notice',
+    `Detected accounts: ${web3.eth.accounts.join(', ')}`
   );
   // Acccounts now exposed
   //web3.eth.sendTransaction({/* ... */});
@@ -53,8 +43,9 @@ window.addEventListener('load', () => {
   else if (window.web3) { initWeb3Legacy() }
   // Non-dapp browsers...
   else {
-    document.body.appendChild(errorMessageComponent(
+    alertMessage(
+      'error',
       'Non-Ethereum browser detected. You should consider trying MetaMask!'
-    ));
+    );
   }
 });

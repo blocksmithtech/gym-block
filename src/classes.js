@@ -1,19 +1,18 @@
-import deployContract from './contract_deploy.js'
+import deployContract from './contract_deploy.js';
 
 window.addEventListener('load', () => {
-  let formElem = document.getElementById('new_class_form');
+  const formElem = document.getElementById('new_class_form');
   if (formElem) {
     formElem.addEventListener('submit', (evt) => {
       evt.preventDefault();
 
-      let nameInputElem = formElem.querySelector('input[name="name"]');
-      let noShowAddressInputElem = formElem.querySelector(
+      const nameInputElem = formElem.querySelector('input[name="name"]');
+      const dateInputElem = formElem.querySelector('input[name="date"]');
+      const depositInputElem = formElem.querySelector('input[name="deposit"]');
+      const noShowAddressInputElem = formElem.querySelector(
         'input[name="noShowAddress"]'
       );
-      let depositInputElem = formElem.querySelector(
-        'input[name="deposit"]'
-      );
-      let limitOfParticipantsInputElem = formElem.querySelector(
+      const limitOfParticipantsInputElem = formElem.querySelector(
         'input[name="limitOfParticipants"]'
       );
 
