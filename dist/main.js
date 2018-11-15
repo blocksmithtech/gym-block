@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".error-msg {\\n  color: red;\\n}\\n.notice-msg {\\n  color: green;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/style.css?./node_modules/css-loader");
+eval("exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".error-msg {\\n  color: red;\\n}\\n.notice-msg {\\n  color: green;\\n}\\n/* Flexbox */\\n.container {\\n  display: flex;\\n}\\n.item {\\n  flex: 0 1 auto;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/style.css?./node_modules/css-loader");
 
 /***/ }),
 
@@ -130,6 +130,29 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 
 /***/ }),
 
+/***/ "./src/alerts.js":
+/*!***********************!*\
+  !*** ./src/alerts.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("let alerts = {};\n\nalerts.alertMessage = (type,  message) => {\n  let alertElem = null;\n  switch(type) {\n    case 'error':\n      alertElem = alerts.errorMessageComponent(message);\n      break;\n    case 'notice':\n      alertElem = alerts.noticeMessageComponent(message);\n      break;\n    default:\n      alertElem = alerts.noticeMessageComponent(message);\n  }\n  document.body.appendChild(alertElem);\n}\n\nalerts.errorMessageComponent = (message) => {\n  let element = document.createElement('div');\n  element.innerHTML = message;\n  element.classList.add('error-msg');\n  return element;\n}\n\nalerts.noticeMessageComponent = (message) => {\n  let element = document.createElement('div');\n  element.innerHTML = message;\n  element.classList.add('notice-msg');\n  return element;\n}\n\nmodule.exports = alerts;\n\n\n//# sourceURL=webpack:///./src/alerts.js?");
+
+/***/ }),
+
+/***/ "./src/attend.js":
+/*!***********************!*\
+  !*** ./src/attend.js ***!
+  \***********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _alerts_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./alerts.js */ \"./src/alerts.js\");\n/* harmony import */ var _alerts_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_alerts_js__WEBPACK_IMPORTED_MODULE_0__);\n\n\nwindow.addEventListener('load', () => {\n  const urlParams = new URLSearchParams(window.location.search);\n  const contractAddress = urlParams.get('contract');\n\n  if (contractAddress) {\n    Object(_alerts_js__WEBPACK_IMPORTED_MODULE_0__[\"alertMessage\"])('notice', 'Found contract address: ' + contractAddress);\n\n  } else {\n    Object(_alerts_js__WEBPACK_IMPORTED_MODULE_0__[\"alertMessage\"])('error', 'Contract address not found!');\n  }\n});\n\n\n//# sourceURL=webpack:///./src/attend.js?");
+
+/***/ }),
+
 /***/ "./src/classes.js":
 /*!************************!*\
   !*** ./src/classes.js ***!
@@ -138,7 +161,7 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _contract_deploy_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contract_deploy.js */ \"./src/contract_deploy.js\");\n/* harmony import */ var _contract_deploy_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_contract_deploy_js__WEBPACK_IMPORTED_MODULE_0__);\n\n\nwindow.addEventListener('load', () => {\n  let formElem = document.getElementById('new_class_form');\n  if (formElem) {\n    formElem.addEventListener('submit', (evt) => {\n      evt.preventDefault();\n\n      let nameInputElem = formElem.querySelector('input[name=\"name\"]');\n      let noShowAddressInputElem = formElem.querySelector(\n        'input[name=\"noShowAddress\"]'\n      );\n      let depositInputElem = formElem.querySelector(\n        'input[name=\"deposit\"]'\n      );\n      let limitOfParticipantsInputElem = formElem.querySelector(\n        'input[name=\"limitOfParticipants\"]'\n      );\n\n      _contract_deploy_js__WEBPACK_IMPORTED_MODULE_0___default()(\n        noShowAddressInputElem.value,\n        nameInputElem.value,\n        depositInputElem.value,\n        limitOfParticipantsInputElem.value\n      );\n    });\n  }\n});\n\n\n//# sourceURL=webpack:///./src/classes.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _contract_deploy_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contract_deploy.js */ \"./src/contract_deploy.js\");\n/* harmony import */ var _contract_deploy_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_contract_deploy_js__WEBPACK_IMPORTED_MODULE_0__);\n\n\nwindow.addEventListener('load', () => {\n  const formElem = document.getElementById('new_class_form');\n  if (formElem) {\n    formElem.addEventListener('submit', (evt) => {\n      evt.preventDefault();\n\n      const nameInputElem = formElem.querySelector('input[name=\"name\"]');\n      const dateInputElem = formElem.querySelector('input[name=\"date\"]');\n      const depositInputElem = formElem.querySelector('input[name=\"deposit\"]');\n      const noShowAddressInputElem = formElem.querySelector(\n        'input[name=\"noShowAddress\"]'\n      );\n      const limitOfParticipantsInputElem = formElem.querySelector(\n        'input[name=\"limitOfParticipants\"]'\n      );\n\n      _contract_deploy_js__WEBPACK_IMPORTED_MODULE_0___default()(\n        noShowAddressInputElem.value,\n        nameInputElem.value,\n        depositInputElem.value,\n        limitOfParticipantsInputElem.value\n      );\n    });\n  }\n});\n\n\n//# sourceURL=webpack:///./src/classes.js?");
 
 /***/ }),
 
@@ -161,7 +184,7 @@ eval("function deployContract(noShowAddress, name, deposit, limitOfParticipants)
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes.js */ \"./src/classes.js\");\n\n\n\n\nfunction errorMessageComponent(message) {\n  let element = document.createElement('div');\n  element.innerHTML = message;\n  element.classList.add('error-msg');\n  return element;\n}\n\nfunction noticeMessageComponent(message) {\n  let element = document.createElement('div');\n  element.innerHTML = message;\n  element.classList.add('notice-msg');\n  return element;\n}\n\nfunction initWeb3Ethereum() {\n  window.web3 = new Web3(ethereum);\n  try {\n    // Request account access if needed\n    ethereum.enable().then(web3Ready);\n  } catch (error) {\n    // User denied account access...\n    console.log(error);\n    document.body.appendChild(errorMessageComponent(error));\n  }\n}\n\nfunction initWeb3Legacy() {\n  window.web3 = new Web3(web3.currentProvider);\n  web3Ready();\n}\n\nfunction web3Ready() {\n  document.body.appendChild(\n    noticeMessageComponent(`Connected to network ${web3.version.network}`)\n  );\n  document.body.appendChild(\n    noticeMessageComponent(\n      `Detected accounts: ${web3.eth.accounts.join(', ')}`\n    )\n  );\n  // Acccounts now exposed\n  //web3.eth.sendTransaction({/* ... */});\n}\n\nwindow.addEventListener('load', () => {\n  // Modern dapp browsers...\n  if (window.ethereum) { initWeb3Ethereum() }\n  // Legacy dapp browsers...\n  else if (window.web3) { initWeb3Legacy() }\n  // Non-dapp browsers...\n  else {\n    document.body.appendChild(errorMessageComponent(\n      'Non-Ethereum browser detected. You should consider trying MetaMask!'\n    ));\n  }\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _alerts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./alerts.js */ \"./src/alerts.js\");\n/* harmony import */ var _alerts_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_alerts_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes.js */ \"./src/classes.js\");\n/* harmony import */ var _attend_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./attend.js */ \"./src/attend.js\");\n\n\n\n\n\n\n\nfunction initWeb3Ethereum() {\n  window.web3 = new Web3(ethereum);\n  try {\n    // Request account access if needed\n    ethereum.enable().then(web3Ready);\n  } catch (error) {\n    // User denied account access...\n    console.log(error);\n    Object(_alerts_js__WEBPACK_IMPORTED_MODULE_1__[\"alertMessage\"])('error', error);\n  }\n}\n\nfunction initWeb3Legacy() {\n  window.web3 = new Web3(web3.currentProvider);\n  web3Ready();\n}\n\nfunction web3Ready() {\n  Object(_alerts_js__WEBPACK_IMPORTED_MODULE_1__[\"alertMessage\"])(\n    'notice', `Connected to network ${web3.version.network}`\n  );\n  Object(_alerts_js__WEBPACK_IMPORTED_MODULE_1__[\"alertMessage\"])(\n    'notice',\n    `Detected accounts: ${web3.eth.accounts.join(', ')}`\n  );\n  // Acccounts now exposed\n  //web3.eth.sendTransaction({/* ... */});\n}\n\nwindow.addEventListener('load', () => {\n  // Modern dapp browsers...\n  if (window.ethereum) { initWeb3Ethereum() }\n  // Legacy dapp browsers...\n  else if (window.web3) { initWeb3Legacy() }\n  // Non-dapp browsers...\n  else {\n    Object(_alerts_js__WEBPACK_IMPORTED_MODULE_1__[\"alertMessage\"])(\n      'error',\n      'Non-Ethereum browser detected. You should consider trying MetaMask!'\n    );\n  }\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 

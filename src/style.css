@@ -4,3 +4,10 @@
 .notice-msg {
   color: green;
 }
+/* Flexbox */
+.container {
+  display: flex;
+}
+.item {
+  flex: 0 1 auto;
+}

@@ -28,20 +28,23 @@
 
   <section>
     <h2>Classes</h2>
+    <i>list of scheduled classes will go here</i>
   </section>
 
   <section>
     <h2>New class</h2>
-    <form id="new_class_form">
-      <fieldset>
-        <label for="new_class_noshow_address">
-          Charity wallet address
-        </label>
-        <input type="text" name="noShowAddress"
-               required="required"
-               id="new_class_noshow_address">
-      </fieldset>
+    <p>
+      Fill this form to schedule a new class.
+      Doing so will deploy a smart-contract on the ethereum blockchain.
+      Afterwards you'll have a link to share the class with your students.
+    </p>
+    <p>
+      Those signing up will have to deposit a fee.
+      That fee will be returned to them if they attend.
+      If not, it goes into the no-show wallet address.
+    </p>
 
+    <form id="new_class_form">
       <fieldset>
         <label for="new_class_name">Name</label>
         <input type="text" name="name"
@@ -50,7 +53,25 @@
       </fieldset>
 
       <fieldset>
-        <label for="new_class_deposit">Deposit</label>
+        <label for="new_class_date">Date</label>
+        <input type="date" name="date"
+               required="required"
+               id="new_class_date">
+      </fieldset>
+
+      <fieldset>
+        <label for="new_class_noshow_address">
+          No-show wallet address
+        </label>
+        <input type="text" name="noShowAddress"
+               required="required"
+               id="new_class_noshow_address">
+        <br>
+        <span>Tip: put in a charity wallet address</span>
+      </fieldset>
+
+      <fieldset>
+        <label for="new_class_deposit">Deposit (wei)</label>
         <input type="number" name="deposit"
                required="required"
                id="new_class_deposit">
@@ -58,7 +79,7 @@
 
       <fieldset>
         <label for="new_class_participants_limit">Participants limit</label>
-        <input type="text" name="limitOfParticipants"
+        <input type="number" name="limitOfParticipants"
                required="required"
                id="new_class_participants_limit">
       </fieldset>
